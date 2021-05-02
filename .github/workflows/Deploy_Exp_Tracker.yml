@@ -21,14 +21,15 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Install NodeJs
+      - name: Setup Node.js environment
         uses: actions/setup-node@v2-beta
-        with:
-          node-version: 12
-      - name: Install Surge
+        with: 
+          version: 12
+
+      - name: Creating build
+        run: yarn build
+    
+      - name: installing surge  
         run: npm install -g surge
       - name: Run Surge
         run: surge ./build http://incomeexpenditretracker.surge.sh/ --token ${{secrets.EXP_TRACKER_TOKEN}}
