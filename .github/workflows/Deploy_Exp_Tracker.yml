@@ -26,9 +26,6 @@ jobs:
         with: 
           version: 12
 
-      - name: Creating build
-        run: yarn build
-    
       - name: installing surge  
         run: npm install -g surge
       - name: Run Surge
